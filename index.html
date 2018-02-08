@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p><b>Delivery Buy</b></p>
+<p>Buy Price:&nbsp; <input id="bprice" type="number" /></p>
+<p>Buy Qty :&nbsp;&nbsp;&nbsp;<input id="bqty" type="number" /></p>
+<p>Effective Buy Price:&nbsp;<b><var id="ebuyprice"></var></b></p> 
+<button type="button" onclick="calc_eff_buy_price()">Calculate Effective Buy Price</button>
+<p>&nbsp;</p>
+<p><b>Delivery Sell</b></p>
+<p>Sell Price:&nbsp; <input id="sprice" type="number" /></p>
+<p>Effective Sell Price:&nbsp;<b><var id="esellprice"></var></b></p> 
+<button type="button" onclick="calc_eff_sell_price()">Calculate Effective Sell Price</button>
+<p>&nbsp;</p>
+<p><b>Intraday</b></p>
+<p>Buy Price:&nbsp;&nbsp;&nbsp;&nbsp;<input id="ibprice" type="number" /></p>
+<p>Sell Price :&nbsp;&nbsp;&nbsp;<input id="isprice" type="number" /></p>
+<p>Effective Sell Price:&nbsp;<b><var id="iesellprice"></var></b></p> 
+<button type="button" onclick="calc_eff_isell_price()">Calculate Effective Sell Price</button>
+
+
+
+<script>
+function calc_eff_buy_price() {
+    var x = (parseFloat(document.getElementById("bprice").value)+ ((document.getElementById("bprice").value/1000)*1.15+(15/document.getElementById("bqty").value))).toFixed(3);
+    document.getElementById("ebuyprice").innerHTML = x;
+}
+
+function calc_eff_sell_price() {
+    var x = (parseFloat(document.getElementById("sprice").value)- (parseFloat(document.getElementById("sprice").value)*1.15)/1000).toFixed(3);
+    document.getElementById("esellprice").innerHTML = x;
+}
+
+function calc_eff_isell_price() {
+    var x = (parseFloat(document.getElementById("isprice").value) - ((parseFloat(document.getElementById("ibprice").value)+parseFloat(document.getElementById("isprice").value))*0.0003)).toFixed(3)
+    document.getElementById("iesellprice").innerHTML = x;
+}
+</script>
+
+</body>
+</html>
